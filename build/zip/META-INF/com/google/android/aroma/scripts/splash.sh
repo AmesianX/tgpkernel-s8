@@ -1,23 +1,20 @@
 #!/sbin/sh
-#
-# MoRoKernel System script 1.0
-# Originally written by @Morogoku
-# Modified by @djb77
-#
 
-mount /dev/block/platform/11120000.ufs/by-name/SYSTEM /system
+# Custom Splash Screen
+cd /tmp/splash
+mkdir /tmp/splashtmp
+cd /tmp/splashtmp
+/tmp/aroma/tar -xf /dev/block/platform/11120000.ufs/by-name/UP_PARAM
+cp /tmp/splash/logo.jpg .
+chown root:root *
+chmod 444 logo.jpg
+touch *
+/tmp/aroma/tar -pcvf ../new.tar *
+cd ..
+cat new.tar > /dev/block/platform/11120000.ufs/by-name/UP_PARAM
+cd /
+rm -rf /tmp/splash
+sync
 
-cd /tmp/tgptemp
-
-# Copy system
-cp -rf system/. /system
-
-# Patch fingerprint
-rm -f /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
-
-# Clean Apex data
-rm -rf /data/data/com.sec.android.app.apex
-
-# Remove init.d Placeholder
-rm -f /system/etc/init.d/placeholder
+exit 10
 
