@@ -3,6 +3,9 @@
 
 mount /dev/block/platform/11120000.ufs/by-name/USERDATA /data
 
+# Set Permissions
+chmod 755 /tmp/aroma/tar
+
 # Variables
 config=/data/media/0/TGPKernel/config
 
